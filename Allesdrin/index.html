@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="de" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!--Vorlagendatei für die Übung AWE Traunstein 2020 Teilzeit-->
+<!--Seitentitel-->
+<title>Am nächsten Dienstag ist Prüfung</title>
+<!--einbinden der css-Datei-->
+<link href="template.css" text="text/css" rel="stylesheet"/>
+
+<!--Java MsgBox Schön, dass Sie meine grandiose Internetseite besuchen einbinden-->
+<script language="JavaScript">
+		function hallo (){
+			alert("\nSchön, dass Sie meine grandiose Internetseite besuchen");
+		}
+</script>
+
+</head>
+
+<body onload="hallo ()">
+
+<h1>Meine großartige Webseite</h1>
+<h2>AWE 2022</h2>
+
+<!--Bild einbinden, Klasse logo erstellen für Formatierung in css-->
+<a href="https://www.vb-dozent.net" target ="_blank"><img class="logo" src="logo.png"/></a>
+
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </p>
+
+<h3>Bestellung</h3>
+
+<!--Formular erstellen-->
+<form action="ausgabe.php" method="post">
+  <table>
+    <tr><td>Artikelname:</td><td><input type="text" name="Artikelname"></td></tr>
+    <tr><td>Beschreibung:</td><td><input type="text" name="Beschreibung"></td></tr>
+    <tr><td>Anzahl:</td><td><input type="number" name="Anzahl"></td></tr>
+    <tr><td>Mengeneinheit:</td><td><input type="text" name="Mengeneinheit"></td></tr>
+    <tr><td>Preis:</td><td><input type="text" name="Preis"></td></tr>
+    <tr><td>Artikelnummer:</td><td><input type="text" name="Artikelnummer"></td></tr>
+  </table>
+
+      <input type="submit" name="abschicken" value="abschicken">
+	  <input type="reset" name="zurücksetzen"value="zurücksetzen">
+  <!--Formular schließen-->
+</form>
+
+
+</body>
+
+</html>
