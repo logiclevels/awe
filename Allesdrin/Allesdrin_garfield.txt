@@ -1,0 +1,149 @@
+Vorbereitung:
+Erstellen Sie einen Ordner mit Ihrem Namen unter X:\XAMP\HTDOCS mit Ihrem Nach-namen. X Steht für das Laufwerk auf dem XAMP installiert ist.
+Aufgabe 1:
+Bauen Sie die Webseite index.html wie folgt um:
+1.Zentrieren Sie die Überschrift2.Bauen Sie das Bild Garfield.jpg unterhalb der Überschrift ein.•Setzen Sie einen Link auf das Bild, welches das Bild direkt im Browser, aber in ei-nem neuen Fenster, darstellt.•Das Bild soll zentriert unter der Überschrift dargestellt werden.
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/
+TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="de" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="../garfield/template.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Garfields Home</h1>
+<br>
+<center><a href="../garfield/garfield.jpg" target="_blank"><img src="../garfield/garfield.jpg"></
+a></center><br>
+<form action="ausgabe.php" method="post">
+<p>Name:</p>
+<input type="text" name="Name" class="txtField"><br>
+<p>Vorname:</p>
+<input type="text" name="Vorname" class="txtField"><br><br>
+<p>Straße:</p>
+<input type="text" name="Straße" class="txtField"><br><br>
+<p>Ort:</p>
+<input type="text" name="Ort" class="txtField"><br><br>
+<p>Newsletter:</p>
+<input type="checkbox" name="Newsletter"> Möchten Sie den newsletter abonieren?
+<br><br>
+<input type="submit" name="Absenden" value="Absenden" class="buttom">
+<input type="submit" name="zuruecksetzen" value="zuruecksetzen"
+class="buttom"><br />
+</form>
+</body>
+
+
+3. Binden Sie eine Datei template.css in die Datei index.html ein.
+Erstellen Sie hierin folgende Formatierungen für die Datei index.html in CSS:
+• Die Seite soll in der Farbe Schwarz dargestellt werden.
+• Die Standardschriftfarbe ist weiß.
+• Die Links sollen immer in hellgrau dargestellt werden.
+• Die Überschrift H1 soll in der Schriftart Helvetica oder einer anderen serifenfreien Schrift
+dargestellt werden, in Gelb, fett, Schriftgröße 24px.
+4. Erstellen Sie ein Formular unterhalb dem Bild
+• Folgende Elemente müssen enthalten sein, Name, Vorname, Strasse, PLZOrt, Newsletter
+bestellen(Checkbox), Abschicken und zurücksetzen.
+• Verwenden Sie die Methode Post um die Daten mit der Datei ausgabe.php im Browser
+auszugeben. Erstellen Sie den erforderlichen Code stellen Sie die übermit-telten Daten in einer
+Liste dar.
+
+
+
+body {
+background-color: #000;
+color: #fff;
+}
+a {
+color:silver;
+}
+a:visited {
+}
+a:active {
+}
+a:hover {
+}
+h1 {
+text-align: center;
+color:yellow;
+font-weight: bold;
+font-family: Helvetica, sans-serif;
+font-size: 24px;
+}
+
+
+<form action="ausgabe.php" method="post">
+<p>Name:</p>
+<input type="text" name="Name" class="txtField"><br>
+<p>Vorname:</p>
+<input type="text" name="Vorname" class="txtField"><br><br>
+<p>Straße:</p>
+<input type="text" name="Straße" class="txtField"><br><br>
+<p>Ort:</p>
+<input type="text" name="Ort" class="txtField"><br><br>
+<p>Newsletter:</p>
+<input type="checkbox" name="Newsletter"> Möchten Sie den newsletter abonieren?
+<br><br>
+<input type="submit" name="Absenden" value="Absenden" class="buttom">
+<input type="submit" name="zuruecksetzen" value="zuruecksetzen" class="buttom"><br />
+</form>
+
+
+
+AUFGABE 2:
+1. Importieren Sie die Datei daten.sql in den MYSQLServer in eine neue Datenbank
+„Garfield“.
+a. Erweitern Sie die Tabelle um das Feld Futterdienst
+b. Ändern/ergänzen Sie die Datensätze wie folgt
+1. Eintrag Max Mustermann, Montag
+2. Eintrag Erwin Huber, Mittwoch, Donnerstag
+3. Eintrag Sabine Ganzgenau, Dienstag, Freitag
+c. Exportieren Sie die Datenbank in eine Datei IhrName.sql
+2. Binden Sie die Datenbank Garfield in der Datei Daten.php
+a. Ermitteln Sie die Anzahl der Datensätze in der Tabelle adressen und geben Sie den Wert aus.
+b. Erstellen Sie eine Tabelle in der Sie die Daten aus der Datenbanktabelle ausgeben lassen.
+c. Den verwendeten SQL String lassen sie sich mit einem Echo am Bildschirm darstel-len.
+
+
+
+<body>
+<?php
+$server ="localhost";
+$user = "root";
+$pass = "";
+$database = "garfield";
+$verbindung = mysqli_connect($server, $user, $pass, $database)
+or die("Verbindung konnte nicht hergestellt werden.");
+$sql = "SELECT * FROM adressen;";
+$abfrage = mysqli_query($verbindung, $sql);
+if (!$abfrage) {
+echo "<p>Die SQL-Anweisung ist fehlgeschlagen.</p>";
+}
+$anzahl = mysqli_query($verbindung, $sql);
+if (!$abfrage) {
+echo "<p>Die SQL-Anweisung ist fehlgeschlagen</p>";
+}
+$anzahl = mysqli_num_rows($abfrage);
+echo "In der Tabelle sind $anzahl Datensätze vorhanden";
+echo "<br><br><table border=\"1\">";
+//Ausgabe der Datensätze in Tabellenform
+while ($zeile = mysqli_fetch_array($abfrage)) {
+echo "<tr><td>Vorname</td><td>Nachname</td><td>Futterdienst</td></tr>
+<td>" . $zeile["Vorname"]. "</td>
+<td>" . $zeile["Nachname"]. "</td>
+<td>" . $zeile["Futterdienst"]. "</td>
+</tr>";
+}
+echo "</table>";
+$return = mysqli_close($verbindung);
+if (!$return) {
+echo "<p>Die Verbindung mit dem Server konnte nicht geschlossen werden</p>";
+}
+//Ausgae der SQL Abfrage:
+echo "<br><p>Die SQL Abfrage: $sql</p>";
+?>
+<br>
+</body>
