@@ -1,0 +1,109 @@
+1.Erstellen Sie eine neue MYSQL Datenbank mit dem Namen Uebung2019 erstellen Sie eineTabelle in der Datenbank 
+mit dem Namen „Adressen“.2.Verwenden Sie die gebräuchlichen Felder für Adressen in der Tabelle.
+3.Tragen Sie 2 Datensätze in die Tabelle ein.a.Sichern Sie die Tabelle in eine Datei.b.Löschen Sie die Tabellec.
+Stellen Sie die Tabelle anschließend aus der Sicherung wieder her.4.Erstellen Sie eine Webseite 
+für die Firma Hakuna Matata die Firma verkauft AfrikanischenKrimskrams fügen Sie das Bild Hakuna_matata.jpg ein, 
+platzieren Sie das Bild links oben aufder Webseite.
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/
+xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="de" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="template.css">
+</head>
+<body>
+<h1>Hakunamatata</h1><br>
+<img src="Hakuna_matata.jpg">
+<h2>Testüberschrift h2</h2>
+<p>Das ist ein Testtext</p>
+<a href="login.php">Hier einloggen</a>
+<a href="daten.php">Daten erfassen</a>
+</body>
+</html>
+
+
+5. Alle Formatierungen bauen Sie über CSS im Kopfbereich ein. Fügen Sie Blindtext ein damit
+die Formatierungen gut zu erkennen sind. Formatieren Sie die Überschriften im Css passend zum
+Seitendesign. Als Schrift verwenden Sie eine Google Schrift.
+6. Wählen Sie für Schrift und Hintergrund passende Farben.
+
+
+body {
+font-family: 'Arima', cursive;
+background-color: antiquewhite;
+}
+7. Erstellen Sie ein Formular für die Benutzeranmeldung prüfen Sie das Passwort mit einem
+hinterlegten Passwort(„geheim“). Dateinamen wählen Sie selbst.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/
+xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Prüfung Anwendungsentwickler 2009</title>
+</head>
+<body>
+<h2>Passwort eingeben</h2>
+<?php
+$password = isset($_POST['password'])?$_POST['password']:" ";
+if ($password == "geheim") {
+echo "Das Passwort ist korrekt";
+}
+else {
+echo "Falsches Passwort";
+}
+?>
+<form action = "<?php ($_SERVER['PHP_SELF']); ?>" method = "post">
+<input type = "password" name = "password" required>
+<button class = "submit" type = "submit" name = "login">Login</button>
+</form>
+</body>
+</html>
+
+
+8. Erstellen Sie ein Formular mit dem Sie weitere Adressen erfassen können. Verwenden Sie hierzu nur
+ein Formular das auch den Code für das Wegschreiben der Daten enthält.
+
+
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<h1>Neuer Datensatz:</h1<br><br>
+<p>Vorname</p>
+<input type="text" name="Vorname" class="txtField"><br><br>
+<p>Nachname</p>
+<input type="text" name="Nachname" class="txtField"><br><br>
+<p>Kundengruppe</p>
+<select name="Kundengruppe">
+<option value="Privat">Privat</option>
+<option value="Kunde">Kunde</option>
+<option value="Einzelhaendler">Einzelhändler</option>
+<option value="Großhaendler">Großhändler</option>
+</select>
+<p>EMail</p>
+<input type="email" name="EMail" class="txtField"><br><br><br>
+<input type="submit" name="save_datensatz" value="Kategorie speichern" class="buttom"><br /><br /
+>
+</form>
+</body>
+</html>
+<?php
+if (isset($_POST['save_datensatz'])) {
+$katbezeichnung = $_POST["Vorname"];
+$katbezeichnung = $_POST["Nachname"];
+$katbezeichnung = $_POST["Kundengruppe"];
+$katbezeichnung = $_POST["EMail"];
+$sql = "INSERT INTO adressen (Vorname, Nachname, Kundengruppe, EMail)";
+$sql .= " VALUES ('Vorname', 'Nachname', 'Kundengruppe', 'EMail')";
+if (mysqli_query($verbindung, $sql)) {
+echo "Neuer Eintrag hinzugefügt\"<br><br>";
+} else {
+echo "Error: " . $sql . "<br>" . mysqli_error($verbindung);
+}
+mysqli_close($verbindung);
+echo $sql;
+}
+?>
